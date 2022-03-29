@@ -3,6 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import * as Font from 'expo-font';
 // import { AppLoading } from 'expo';
 import AppLoading from 'expo-app-loading';
+import { StatusBar } from 'expo-status-bar';
 
 import Header from "./components/Header";
 import GameScreen from "./screens/GameScreen";
@@ -11,11 +12,11 @@ import GameOverScreen from "./screens/GameOverScreen";
 
 const fetchFonts = () => {
 	return Font.loadAsync({
-	  'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
-	  'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf')
+		'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
+		'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf')
 	});
 };
-  
+
 
 export default function App() {
 	const [userNumber, setUserNumber] = useState();
@@ -24,11 +25,11 @@ export default function App() {
 
 	if (!dataLoaded) {
 		return (
-		  <AppLoading
-			startAsync={fetchFonts}
-			onFinish={() => setDataLoaded(true)}
-			onError={(err) => console.log(err)}
-		  />
+			<AppLoading
+				startAsync={fetchFonts}
+				onFinish={() => setDataLoaded(true)}
+				onError={(err) => console.log(err)}
+			/>
 		);
 	}
 
@@ -59,10 +60,13 @@ export default function App() {
 	}
 
 	return (
-		<View style={styles.container}>
-			<Header title="Guess a Number" />
-			{content}
-		</View>
+		<>
+			<StatusBar style="light" />
+			<View style={styles.container}>
+				<Header title="Guess a Number" />
+				{content}
+			</View>
+		</>
 	)
 };
 
